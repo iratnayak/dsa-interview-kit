@@ -2,8 +2,10 @@
 // Input: "({[]})" -> True, "([)]" -> False
 
 function isValid(s) {
+    // Create empty array it call stack
     let stack = [];
-
+    
+    // Create map for parentheses
     const brackets = {
         '(': ')',
         '{': '}',
