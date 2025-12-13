@@ -5,10 +5,10 @@
  */
 
 class RateLimiter {
-    private capacity: number;      // Max tokens the bucket can hold
-    private tokens: number;        // Current tokens available
-    private refillRate: number;    // Tokens added per second
-    private lastRefill: number;    // Timestamp of the last refill
+    private capacity: number;       // Max tokens the bucket can hold
+    private tokens: number;         // Current tokens available
+    private refillRate: number;     // Tokens added per second
+    private lastRefill: number;     // Timestamp of the last refill
 
     constructor(capacity: number, refillRate: number) {
         this.capacity = capacity;
@@ -21,7 +21,7 @@ class RateLimiter {
     private refill() {
         const now = Date.now();
         const elapsedSeconds = (now - this.lastRefill) / 1000;
-        
+
         if (elapsedSeconds > 0) {
             const tokensToAdd = elapsedSeconds * this.refillRate;
             this.tokens = Math.min(this.capacity, this.tokens + tokensToAdd);
@@ -41,16 +41,15 @@ class RateLimiter {
             console.log(`❌ Request Blocked. Not enough tokens.`);
             return false;
         }
-    }
+    } 
 }
 
 // --- Testing the Logic ---
 console.log("--- Starting Rate Limiter Simulation ---");
 
 // Allow 5 requests max, refill 1 token every second
-const apiLimiter = new RateLimiter(5, 1); 
+const apiLimiter = new RateLimiter(5, 1);
 
-// Simulate rapid requests
 apiLimiter.allowRequest(); // 1
 apiLimiter.allowRequest(); // 2
 apiLimiter.allowRequest(); // 3
@@ -62,4 +61,5 @@ apiLimiter.allowRequest(); // 6 (Should Block)
 setTimeout(() => {
     console.log("\n--- After 2 Seconds ---");
     apiLimiter.allowRequest(); // Should Allow again
+    
 }, 2000);
