@@ -1,22 +1,12 @@
-// Find Factorial of a Number
-// Example: 5! = 5 * 4 * 3 * 2 * 1 = 120
+function factorialLoop(n) {
+  let result = 1;
 
-function factorial(n){
+  for (let i = 2; i <= n; i++) {
+    result = result * i;
+  }
 
-    if (n === 0)
-        {
-        return 0;
-    } else if (n === 1){
-        return 1;
-    }
-
-    let result = 1;
-    for (let i = 2; i <= n; i++) {
-        result = result * i;
-    }
-
-    return result;
-
+  return result;
 }
 
-console.log("Factorial of ", factorial(5));
+const number = 5;
+console.log(`Factorial of ${number} (Loop):`, factorialLoop(number));
